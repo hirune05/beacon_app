@@ -1,0 +1,28 @@
+PODS:
+  - beacon_broadcast (0.0.1):
+    - Flutter
+  - Flutter (1.0.0)
+  - flutter_beacon (0.3.0):
+    - Flutter
+
+DEPENDENCIES:
+  - beacon_broadcast (from `.symlinks/plugins/beacon_broadcast/ios`)
+  - Flutter (from `Flutter`)
+  - flutter_beacon (from `.symlinks/plugins/flutter_beacon/ios`)
+
+EXTERNAL SOURCES:
+  beacon_broadcast:
+    :path: ".symlinks/plugins/beacon_broadcast/ios"
+  Flutter:
+    :path: Flutter
+  flutter_beacon:
+    :path: ".symlinks/plugins/flutter_beacon/ios"
+
+SPEC CHECKSUMS:
+  beacon_broadcast: 2c2562111f7b7e0f1ab59487f6bc805805e3c9f3
+  Flutter: f04841e97a9d0b0a8025694d0796dd46242b2854
+  flutter_beacon: 2525df9d96b904623f325968a73bac805e648119
+
+PODFILE CHECKSUM: ef19549a9bc3046e7bb7d2fab4d021637c0c58a3
+
+COCOAPODS: 1.11.3
