@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:sumple_beacon/view/pages/beacon_scanning_page.dart';
+import 'package:sumple_beacon/view/home_page.dart';
 
 void main() {
   runApp(const MainApp());
@@ -19,14 +19,7 @@ class MainApp extends StatelessWidget {
       darkTheme: ThemeData(
         brightness: Brightness.dark,
       ),
-      home: const BeaconScanningPage(),
+      home: const HomePage(),
     );
   }
 }
-
-/*class HomePage extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return Container();
-  }
-}*/

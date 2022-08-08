@@ -295,7 +295,46 @@ class _BeaconScanningPageState extends State<BeaconScanningPage>
           ),
         ],
       ),
-      body: Container(),
+      body: _beacons.isEmpty
+          //ビーコンが未検出時は、ぐるぐる表示
+          ? const Center(child: CircularProgressIndicator())
+          : ListView(
+              children: ListTile.divideTiles(
+                context: context,
+                //検出した全ビーコン情報に対して、ひとつずつListTileウィジェットを使ってリストを構築していく。
+                tiles: _beacons.map(
+                  (beacon) {
+                    return ListTile(
+                      title: Text(
+                        beacon.proximityUUID,
+                        style: const TextStyle(fontSize: 15.0),
+                      ),
+                      subtitle: Row(
+                        mainAxisSize: MainAxisSize.max,
+                        children: [
+                          Flexible(
+                            child: Text(
+                              'Major: ${beacon.major}\nMinor: ${beacon.minor}',
+                              style: const TextStyle(fontSize: 13.0),
+                            ),
+                            flex: 1,
+                            fit: FlexFit.tight,
+                          ),
+                          Flexible(
+                            child: Text(
+                              'Accuracy: ${beacon.accuracy}m\nRSSI: ${beacon.rssi}',
+                              style: const TextStyle(fontSize: 13.0),
+                            ),
+                            flex: 2,
+                            fit: FlexFit.tight,
+                          )
+                        ],
+                      ),
+                    );
+                  },
+                ),
+              ).toList(),
+            ),
     );
   }
 }
