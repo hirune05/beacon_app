@@ -7,6 +7,13 @@ import 'package:flutter_beacon/flutter_beacon.dart';
 
 import '../../util/constants.dart';
 
+List<String> helps = [
+  "次降ります支えて下さい",
+  "せきを譲っていただきたいです",
+  "痴漢です！助けて下さい",
+  "階段を登りたいです。支えて下さい"
+];
+
 class BeaconScanningPage extends StatefulWidget {
   const BeaconScanningPage({Key? key}) : super(key: key);
 
@@ -314,7 +321,7 @@ class _BeaconScanningPageState extends State<BeaconScanningPage>
                         children: [
                           Flexible(
                             child: Text(
-                              'Major: ${beacon.major}\nMinor: ${beacon.minor}',
+                              'Major: ${helps[beacon.major]}\nMinor: ${beacon.minor}',
                               style: const TextStyle(fontSize: 13.0),
                             ),
                             flex: 1,

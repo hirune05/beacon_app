@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_beacon/flutter_beacon.dart';
 import 'package:sumple_beacon/util/constants.dart';
 
+int isSelectedItem = 0;
+
 class BeaconBroadcastingPage extends StatefulWidget {
   const BeaconBroadcastingPage({Key? key}) : super(key: key);
 
@@ -142,7 +144,7 @@ class _BeaconBroadcastingPageState extends State<BeaconBroadcastingPage>
 
   //Major番号のTextFormField
   Widget get majorField {
-    return TextFormField(
+    /*return TextFormField(
       readOnly: broadcasting,
       controller: majorController,
       decoration: const InputDecoration(
@@ -167,6 +169,45 @@ class _BeaconBroadcastingPageState extends State<BeaconBroadcastingPage>
 
         return null;
       },
+    );*/
+    return Column(
+      mainAxisAlignment: MainAxisAlignment.start,
+      children: [
+        Text(
+          'Help内容',
+          style: TextStyle(fontSize: 10),
+        ),
+        DropdownButton(
+          //4
+          items: const [
+            //5
+            DropdownMenuItem(
+              child: Text("次降ります。支えて下さい"),
+              value: 0,
+            ),
+            DropdownMenuItem(
+              child: Text("せきを譲っていただきたいです"),
+              value: 1,
+            ),
+            DropdownMenuItem(
+              child: Text("痴漢です！助けて下さい"),
+              value: 2,
+            ),
+            DropdownMenuItem(
+              child: Text("階段を登りたいです。支えて下さい"),
+              value: 3,
+            ),
+          ],
+          //6
+          onChanged: (int? value) {
+            setState(() {
+              isSelectedItem = value!;
+            });
+          },
+          value: isSelectedItem,
+        ),
+      ],
+      //7
     );
   }
 
@@ -219,7 +260,7 @@ class _BeaconBroadcastingPageState extends State<BeaconBroadcastingPage>
           //発信開始
           await flutterBeacon.startBroadcast(BeaconBroadcast(
             proximityUUID: uuidController.text,
-            major: int.tryParse(majorController.text) ?? 0,
+            major: isSelectedItem,
             minor: int.tryParse(minorController.text) ?? 0,
           ));
         }
