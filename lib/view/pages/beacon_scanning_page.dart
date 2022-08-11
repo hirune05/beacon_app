@@ -4,6 +4,7 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_beacon/flutter_beacon.dart';
+import 'package:sumple_beacon/view/notification.dart';
 
 import '../../util/constants.dart';
 
@@ -13,6 +14,8 @@ List<String> helps = [
   "痴漢です！助けて下さい",
   "階段を登りたいです。支えて下さい"
 ];
+
+int notificationCount = 0;
 
 class BeaconScanningPage extends StatefulWidget {
   const BeaconScanningPage({Key? key}) : super(key: key);
@@ -148,6 +151,16 @@ class _BeaconScanningPageState extends State<BeaconScanningPage>
         print(result);
         if (mounted) {
           print('beacon圏内に入ったよ');
+          if (notificationCount != 1) {
+            if (Platform.isAndroid) {
+              notifyAndroid();
+            }
+            if (Platform.isIOS) {
+              notifyIOS();
+            }
+          } else {
+            notificationCount++;
+          }
         }
       },
     );
