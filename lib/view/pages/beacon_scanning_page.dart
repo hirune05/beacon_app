@@ -27,6 +27,7 @@ class _BeaconScanningPageState extends State<BeaconScanningPage>
   final StreamController<BluetoothState> streamController = StreamController();
   StreamSubscription<BluetoothState>? _streamBluetooth;
   StreamSubscription<RangingResult>? _streamRanging;
+  StreamSubscription<MonitoringResult>? _streamMonitoring;
   final _beacons = <Beacon>[];
   bool _authorizationStatusOk = false; //アプリの位置情報の使用権限許可
   bool _locationServiceEnabled = false; //端末の位置情報 ON
@@ -103,6 +104,7 @@ class _BeaconScanningPageState extends State<BeaconScanningPage>
         _authorizationStatusOk &&
         _locationServiceEnabled) {
       listeningRanging();
+      listeningMonitoring();
     }
   }
 
@@ -133,6 +135,36 @@ class _BeaconScanningPageState extends State<BeaconScanningPage>
       },
     );
   }
+
+  void listeningMonitoring() {
+    final regions = <Region>[
+      Region(
+        identifier: 'Cubeacon',
+        proximityUUID: kProximityUUID,
+      ),
+    ];
+    _streamMonitoring = flutterBeacon.monitoring(regions).listen(
+      (MonitoringResult result) {
+        print(result);
+        if (mounted) {
+          print('beacon圏内に入ったよ');
+        }
+      },
+    );
+  }
+  /*
+  Beacons.monitoring(
+  region: new BeaconRegionIBeacon(
+    identifier: 'test',
+    proximityUUID: '7da11b71-6f6a-4b6d-81c0-8abd031e6113',
+  ),
+  inBackground: false, // continue the monitoring operation in background or not, see below
+).listen((result) {
+  // result contains the new monitoring state:
+  // - enter
+  // - exit
+}
+  */
 
   ///
   /// 並べ替え
@@ -186,6 +218,7 @@ class _BeaconScanningPageState extends State<BeaconScanningPage>
     WidgetsBinding.instance.removeObserver(this); //オブザーバーを破棄します。
     streamController.close();
     _streamRanging?.cancel();
+    _streamMonitoring?.cancel();
     _streamBluetooth?.cancel();
     flutterBeacon.close;
 
