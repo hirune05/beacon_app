@@ -84,13 +84,18 @@ class _BeaconBroadcastingPageState extends State<BeaconBroadcastingPage>
     super.dispose();
   }
 
+//ここが実際の描画画面
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       // (1) テキスト入力が表示された際に、Widgetがはみ出してエラー表示されるのを回避
       resizeToAvoidBottomInset: false,
       appBar: AppBar(
-        title: const Text('Broadcast'),
+        backgroundColor: Colors.pink[50],
+        title: const Text(
+          'Broadcast',
+          style: TextStyle(color: Color.fromARGB(255, 21, 9, 4)),
+        ),
         centerTitle: false,
       ),
       body: GestureDetector(
@@ -106,10 +111,11 @@ class _BeaconBroadcastingPageState extends State<BeaconBroadcastingPage>
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.stretch,
                     children: [
-                      uuidField,
                       majorField,
-                      minorField,
                       const SizedBox(height: 16),
+                      SizedBox(
+                        height: 200,
+                      ),
                       buttonBroadcast,
                     ],
                   ),
@@ -144,67 +150,63 @@ class _BeaconBroadcastingPageState extends State<BeaconBroadcastingPage>
 
   //Major番号のTextFormField
   Widget get majorField {
-    /*return TextFormField(
-      readOnly: broadcasting,
-      controller: majorController,
-      decoration: const InputDecoration(
-        labelText: 'Major',
-      ),
-      keyboardType: TextInputType.number,
-      validator: (val) {
-        //入力欄が空でないか
-        if (val == null || val.isEmpty) {
-          return 'Major required';
-        }
-
-        try {
-          int major = int.parse(val);
-          //入力範囲0～65535
-          if (major < 0 || major > 65535) {
-            return 'Major must be number between 0 and 65535';
-          }
-        } on FormatException {
-          return 'Major must be number';
-        }
-
-        return null;
-      },
-    );*/
     return Column(
       mainAxisAlignment: MainAxisAlignment.start,
       children: [
+        SizedBox(height: 60),
         Text(
           'Help内容',
-          style: TextStyle(fontSize: 10),
+          style: TextStyle(fontSize: 25),
         ),
-        DropdownButton(
-          //4
-          items: const [
-            //5
-            DropdownMenuItem(
-              child: Text("次降ります。支えて下さい"),
-              value: 0,
+        SizedBox(height: 20),
+        Container(
+          decoration: BoxDecoration(
+            color: Colors.white,
+            boxShadow: [
+              BoxShadow(
+                color: Colors.grey,
+                offset: Offset(3.0, 3.0),
+                blurRadius: 0.8,
+                spreadRadius: 0.8,
+              ),
+            ],
+          ),
+          height: 100,
+          child: SizedBox(
+            height: 50,
+            child: DropdownButton(
+              //4
+              items: const [
+                //5
+                DropdownMenuItem(
+                  child: Text(
+                    "大きな音が苦しいです",
+                    style: TextStyle(fontSize: 20),
+                  ),
+                  value: 0,
+                ),
+                DropdownMenuItem(
+                  child: Text("静かな場所へ", style: TextStyle(fontSize: 20)),
+                  value: 1,
+                ),
+                DropdownMenuItem(
+                  child: Text("痴漢です！助けて下さい", style: TextStyle(fontSize: 20)),
+                  value: 2,
+                ),
+                DropdownMenuItem(
+                  child: Text("ヘッドホン気にしないで", style: TextStyle(fontSize: 20)),
+                  value: 3,
+                ),
+              ],
+              //6
+              onChanged: (int? value) {
+                setState(() {
+                  isSelectedItem = value!;
+                });
+              },
+              value: isSelectedItem,
             ),
-            DropdownMenuItem(
-              child: Text("せきを譲っていただきたいです"),
-              value: 1,
-            ),
-            DropdownMenuItem(
-              child: Text("痴漢です！助けて下さい"),
-              value: 2,
-            ),
-            DropdownMenuItem(
-              child: Text("階段を登りたいです。支えて下さい"),
-              value: 3,
-            ),
-          ],
-          //6
-          onChanged: (int? value) {
-            setState(() {
-              isSelectedItem = value!;
-            });
-          },
-          value: isSelectedItem,
+          ),
         ),
       ],
       //7
@@ -240,14 +242,16 @@ class _BeaconBroadcastingPageState extends State<BeaconBroadcastingPage>
     );
   }
 
+  //下のボタン
   Widget get buttonBroadcast {
     final ButtonStyle raisedButtonStyle = ElevatedButton.styleFrom(
-      onPrimary: Colors.white,
-      primary: broadcasting ? Colors.red : Theme.of(context).primaryColor,
+      onPrimary: Colors.brown[900],
+      //ここで送信中の色を変えられる。
+      primary: broadcasting ? Colors.red : Colors.pink[100],
       minimumSize: const Size(88, 36),
-      padding: const EdgeInsets.symmetric(horizontal: 16),
+      padding: const EdgeInsets.symmetric(vertical: 35),
       shape: const RoundedRectangleBorder(
-        borderRadius: BorderRadius.all(Radius.circular(2)),
+        borderRadius: BorderRadius.all(Radius.circular(80)),
       ),
     );
     return ElevatedButton(
@@ -273,7 +277,10 @@ class _BeaconBroadcastingPageState extends State<BeaconBroadcastingPage>
           });
         }
       },
-      child: Text('Broadcast${broadcasting ? 'ing' : ''}'),
+      child: Text(
+        '${broadcasting ? '送信中' : '送信！'}',
+        style: TextStyle(fontSize: 35),
+      ),
     );
   }
 }

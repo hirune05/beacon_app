@@ -9,8 +9,8 @@ import 'package:sumple_beacon/view/notification.dart';
 import '../../util/constants.dart';
 
 List<String> helps = [
-  "次降ります支えて下さい",
-  "せきを譲っていただきたいです",
+  "付近の音に困っています。静かな場所へ連れて行ってください",
+  "立っているのが辛いです。",
   "痴漢です！助けて下さい",
   "階段を登りたいです。支えて下さい"
 ];
@@ -242,7 +242,14 @@ class _BeaconScanningPageState extends State<BeaconScanningPage>
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Scan'),
+        title: const Text(
+          'アプリ名',
+          style: TextStyle(color: Colors.black),
+        ),
+        leading: Image.asset('images/icon.png'),
+        backgroundColor: Colors.white,
+        shape:
+            Border(bottom: BorderSide(color: Colors.pink.shade100, width: 6)),
         actions: [
           //アプリの位置情報の使用権限許可off&&端末の位置情報 ON
           if (!_authorizationStatusOk && _locationServiceEnabled)
@@ -348,46 +355,65 @@ class _BeaconScanningPageState extends State<BeaconScanningPage>
           ),
         ],
       ),
-      body: _beacons.isEmpty
-          //ビーコンが未検出時は、ぐるぐる表示
-          ? const Center(child: CircularProgressIndicator())
-          : ListView(
-              children: ListTile.divideTiles(
-                context: context,
-                //検出した全ビーコン情報に対して、ひとつずつListTileウィジェットを使ってリストを構築していく。
-                tiles: _beacons.map(
-                  (beacon) {
-                    return ListTile(
-                      title: Text(
-                        beacon.proximityUUID,
-                        style: const TextStyle(fontSize: 15.0),
-                      ),
-                      subtitle: Row(
-                        mainAxisSize: MainAxisSize.max,
-                        children: [
-                          Flexible(
-                            child: Text(
-                              'Major: ${helps[beacon.major]}\nMinor: ${beacon.minor}',
-                              style: const TextStyle(fontSize: 13.0),
-                            ),
-                            flex: 1,
-                            fit: FlexFit.tight,
-                          ),
-                          Flexible(
-                            child: Text(
-                              'Accuracy: ${beacon.accuracy}m\nRSSI: ${beacon.rssi}',
-                              style: const TextStyle(fontSize: 13.0),
-                            ),
-                            flex: 2,
-                            fit: FlexFit.tight,
-                          )
-                        ],
-                      ),
-                    );
-                  },
+      body: GestureDetector(
+        child: _beacons.isEmpty
+            //何も来てない時
+            ? Container(
+                margin: EdgeInsets.all(21),
+                //padding: EdgeInsets.all(50),
+                decoration: BoxDecoration(
+                  border: Border.all(color: Colors.black, width: 2),
+                  borderRadius: BorderRadius.circular(15),
+                  color: Colors.white,
                 ),
-              ).toList(),
-            ),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Text('近くに聴覚過敏で助けを求めている人\nはいません。'),
+                  ],
+                ),
+              )
+            : Form(
+                child: Container(
+                  padding:
+                      const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.stretch,
+                    children: [
+                      /*Container(
+                        child: Text('hello'),
+                      ),
+                      Container(
+                        child: Text('hello'),
+                      )*/
+                      ListTile(
+                        title: Flexible(
+                          child: Text(
+                            '半径${_beacons.first.accuracy}m以内に聴覚過敏で苦しんでいる人がいます',
+                            style: const TextStyle(fontSize: 13.0),
+                          ),
+                          flex: 2,
+                          fit: FlexFit.tight,
+                        ),
+                        subtitle: Row(
+                          mainAxisSize: MainAxisSize.max,
+                          children: [
+                            Flexible(
+                              child: Text(
+                                '${helps[_beacons.first.major]}',
+                                style: const TextStyle(fontSize: 13.0),
+                              ),
+                              flex: 1,
+                              fit: FlexFit.tight,
+                            ),
+                          ],
+                        ),
+                      )
+                    ],
+                  ),
+                ),
+              ),
+      ),
     );
   }
 }
