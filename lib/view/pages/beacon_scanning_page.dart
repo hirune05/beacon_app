@@ -373,20 +373,43 @@ class _BeaconScanningPageState extends State<BeaconScanningPage>
                   ],
                 ),
               )
-            : Form(
-                child: Container(
-                  padding:
-                      const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.stretch,
-                    children: [
-                      /*Container(
-                        child: Text('hello'),
-                      ),
-                      Container(
-                        child: Text('hello'),
-                      )*/
-                      ListTile(
+            //何か来た時
+            : ListView(
+                children: ListTile.divideTiles(
+                  context: context,
+                  //検出した全ビーコン情報に対して、ひとつずつListTileウィジェットを使ってリストを構築していく。
+                  tiles: _beacons.map(
+                    (beacon) {
+                      return ListTile(
+                        title: Flexible(
+                          child: Text(
+                            '半径${beacon.accuracy}m以内に聴覚過敏で苦しんでいる人がいます',
+                            style: const TextStyle(fontSize: 13.0),
+                          ),
+                          flex: 2,
+                          fit: FlexFit.tight,
+                        ),
+                        subtitle: Row(
+                          mainAxisSize: MainAxisSize.max,
+                          children: [
+                            Flexible(
+                              child: Text(
+                                '${helps[beacon.major]}',
+                                style: const TextStyle(fontSize: 13.0),
+                              ),
+                              flex: 1,
+                              fit: FlexFit.tight,
+                            ),
+                          ],
+                        ),
+                      );
+                    },
+                  ),
+                ).toList(),
+              ),
+
+        //一つだけでいい場合
+        /*ListTile(
                         title: Flexible(
                           child: Text(
                             '半径${_beacons.first.accuracy}m以内に聴覚過敏で苦しんでいる人がいます',
@@ -408,11 +431,7 @@ class _BeaconScanningPageState extends State<BeaconScanningPage>
                             ),
                           ],
                         ),
-                      )
-                    ],
-                  ),
-                ),
-              ),
+                      )*/
       ),
     );
   }
