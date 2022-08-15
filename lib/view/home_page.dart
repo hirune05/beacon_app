@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:sumple_beacon/view/pages/beacon_broadcasting_page.dart';
+import 'package:sumple_beacon/view/pages/information.dart';
+import 'package:sumple_beacon/view/pages/settings.dart';
 import 'cupertino_home_scaffold.dart';
 import 'pages/beacon_scanning_page.dart';
 import 'tab_item.dart';
@@ -18,6 +20,8 @@ class _HomePageState extends State<HomePage> {
   final Map<TabItem, GlobalKey<NavigatorState>> navigatorKeys = {
     TabItem.scanning: GlobalKey<NavigatorState>(),
     TabItem.broadcasting: GlobalKey<NavigatorState>(),
+    TabItem.information: GlobalKey<NavigatorState>(),
+    TabItem.settings: GlobalKey<NavigatorState>(),
   };
 
   //enumで定義したTabItemに応じたページを実装する
@@ -25,6 +29,8 @@ class _HomePageState extends State<HomePage> {
     return {
       TabItem.scanning: (_) => const BeaconScanningPage(),
       TabItem.broadcasting: (_) => const BeaconBroadcastingPage(),
+      TabItem.information: (_) => const InformationPage(),
+      TabItem.settings: (_) => const SettingsPage(),
     };
   }
 

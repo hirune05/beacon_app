@@ -5,6 +5,8 @@ import 'package:flutter/material.dart';
 enum TabItem {
   scanning,
   broadcasting,
+  information,
+  settings,
 }
 
 //Map形式で先ほど定義したenumをキーとして、titleとiconの情報を持ったTabItemDataを定義する
@@ -16,7 +18,10 @@ class TabItemData {
   final IconData icon;
 
   static const Map<TabItem, TabItemData> allTabs = {
-    TabItem.scanning: TabItemData(title: 'Scan', icon: Icons.list),
-    TabItem.broadcasting: TabItemData(title: 'Broadcast', icon: Icons.send),
+    TabItem.scanning: TabItemData(title: '受信', icon: Icons.wifi),
+    TabItem.broadcasting: TabItemData(title: '送信', icon: Icons.send),
+    TabItem.information:
+        TabItemData(title: '情報', icon: Icons.perm_device_information),
+    TabItem.settings: TabItemData(title: 'その他', icon: Icons.list),
   };
 }

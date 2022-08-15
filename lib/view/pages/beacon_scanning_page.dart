@@ -243,7 +243,7 @@ class _BeaconScanningPageState extends State<BeaconScanningPage>
     return Scaffold(
       appBar: AppBar(
         title: const Text(
-          'アプリ名',
+          '受信',
           style: TextStyle(color: Colors.black),
         ),
         leading: Image.asset('images/icon.png'),

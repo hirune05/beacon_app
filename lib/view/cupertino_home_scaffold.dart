@@ -25,6 +25,8 @@ class CupertinoHomeScaffold extends StatelessWidget {
         items: [
           _buildItem(TabItem.scanning),
           _buildItem(TabItem.broadcasting),
+          _buildItem(TabItem.information),
+          _buildItem(TabItem.settings),
         ],
         //タブを押したときのイベント
         onTap: (index) => onSelectTab(TabItem.values[index]),

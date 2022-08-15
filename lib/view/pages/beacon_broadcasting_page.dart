@@ -91,12 +91,14 @@ class _BeaconBroadcastingPageState extends State<BeaconBroadcastingPage>
       // (1) テキスト入力が表示された際に、Widgetがはみ出してエラー表示されるのを回避
       resizeToAvoidBottomInset: false,
       appBar: AppBar(
-        backgroundColor: Colors.pink[50],
+        leading: Image.asset('images/icon.png'),
+        backgroundColor: Colors.white,
         title: const Text(
-          'Broadcast',
+          '送信',
           style: TextStyle(color: Color.fromARGB(255, 21, 9, 4)),
         ),
-        centerTitle: false,
+        shape:
+            Border(bottom: BorderSide(color: Colors.pink.shade100, width: 6)),
       ),
       body: GestureDetector(
         onTap: () => FocusScope.of(context).requestFocus(clearFocus),
