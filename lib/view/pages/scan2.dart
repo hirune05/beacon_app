@@ -5,14 +5,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_beacon/flutter_beacon.dart';
 import 'package:sumple_beacon/view/notification.dart';
+import 'package:sumple_beacon/view/pages/beacon_broadcasting_page.dart';
 import 'package:sumple_beacon/view/pages/fight.dart';
-import 'package:sumple_beacon/view/pages/thanks.dart';
 
 import '../../util/constants.dart';
 
 List<String> helps = [
-  "協力するよ！頑張って!!",
-  "問題が解決しました。ありがとう！",
+  "ファイト！",
   "食事中の食器の擦れあう音が苦手です。",
   "ささやき声が苦手です。",
   "大きな声が苦手です。"
@@ -21,17 +20,16 @@ List<String> helps = [
 int notificationCount = 0;
 int helpCountBase = 0;
 int helpCountSecond = 0;
-bool favo = false;
 
-class BeaconScanningPage extends StatefulWidget {
-  const BeaconScanningPage({Key? key}) : super(key: key);
+class BeaconScanning2Page extends StatefulWidget {
+  const BeaconScanning2Page({Key? key}) : super(key: key);
 
   @override
-  _BeaconScanningPageState createState() => _BeaconScanningPageState();
+  _BeaconScanning2PageState createState() => _BeaconScanning2PageState();
 }
 
 //ビーコンを検出する
-class _BeaconScanningPageState extends State<BeaconScanningPage>
+class _BeaconScanning2PageState extends State<BeaconScanning2Page>
     with WidgetsBindingObserver {
   final StreamController<BluetoothState> streamController = StreamController();
   StreamSubscription<BluetoothState>? _streamBluetooth;
@@ -389,9 +387,7 @@ class _BeaconScanningPageState extends State<BeaconScanningPage>
                       return ListTile(
                         title: Flexible(
                           child: Text(
-                            beacon.major == 0
-                                ? 'あなたに協力してくれている人がいます。'
-                                : '半径${beacon.accuracy}m以内に聴覚過敏で苦しんでいる人がいます',
+                            '半径${beacon.accuracy}m以内に聴覚過敏で苦しんでいる人がいます',
                             style: const TextStyle(fontSize: 13.0),
                           ),
                           flex: 2,
@@ -410,67 +406,22 @@ class _BeaconScanningPageState extends State<BeaconScanningPage>
                             ),
                           ],
                         ),
-                        trailing: Container(
-                          decoration: BoxDecoration(
-                            shape: BoxShape.circle,
-                            boxShadow: [
-                              BoxShadow(
-                                color: Colors.grey, //色
-                                spreadRadius: 5,
-                                blurRadius: 5,
-                                offset: Offset(1, 1),
-                              ),
-                            ],
-                            color: Colors.white,
-                          ),
-                          child: beacon.major == 0
-                              ? Column(
-                                  mainAxisSize: MainAxisSize.min,
-                                  children: <Widget>[
-                                    IconButton(
-                                      icon: const Icon(Icons.favorite,
-                                          color: Colors.pink),
-                                      onPressed: () async {
-                                        await Navigator.push(
-                                          context,
-                                          MaterialPageRoute(
-                                              builder: (context) =>
-                                                  ThanksPage()),
-                                        );
-                                        initScanBeacon();
-                                      },
-                                    ),
-                                    /*Text(
-                                'ファイト！',
-                                style:
-                                    TextStyle(fontSize: 4, color: Colors.red),
-                              ),*/
-                                  ],
-                                )
-                              : Column(
-                                  mainAxisSize: MainAxisSize.min,
-                                  children: <Widget>[
-                                    IconButton(
-                                      icon: const Icon(
-                                          Icons.local_fire_department,
-                                          color: Colors.orange),
-                                      onPressed: () async {
-                                        await Navigator.push(
-                                          context,
-                                          MaterialPageRoute(
-                                              builder: (context) =>
-                                                  FightPage()),
-                                        );
-                                        initScanBeacon();
-                                      },
-                                    ),
-                                    /*Text(
-                                'ファイト！',
-                                style:
-                                    TextStyle(fontSize: 4, color: Colors.red),
-                              ),*/
-                                  ],
-                                ),
+                        trailing: Column(
+                          mainAxisSize: MainAxisSize.min,
+                          children: <Widget>[
+                            IconButton(
+                              icon: const Icon(Icons.local_fire_department),
+                              tooltip: 'Increase volume by 10',
+                              onPressed: () {
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) => FightPage()),
+                                );
+                              },
+                            ),
+                            Text('ファイト！')
+                          ],
                         ),
                       );
                     },

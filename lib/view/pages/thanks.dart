@@ -2,18 +2,16 @@ import 'package:flutter/material.dart';
 
 import 'package:flutter_beacon/flutter_beacon.dart';
 import 'package:sumple_beacon/util/constants.dart';
-import 'package:sumple_beacon/view/pages/navigate_page.dart';
 
 int isSelectedItem = 0;
 
-class BeaconBroadcastingPage extends StatefulWidget {
-  const BeaconBroadcastingPage({Key? key}) : super(key: key);
+class ThanksPage extends StatefulWidget {
+  const ThanksPage({Key? key}) : super(key: key);
   @override
-  _BeaconBroadcastingPageState createState() => _BeaconBroadcastingPageState();
+  _ThanksPageState createState() => _ThanksPageState();
 }
 
-class _BeaconBroadcastingPageState extends State<BeaconBroadcastingPage>
-    with WidgetsBindingObserver {
+class _ThanksPageState extends State<ThanksPage> with WidgetsBindingObserver {
   final clearFocus = FocusNode();
   bool broadcasting = false;
   bool authorizationStatusOk = false;
@@ -108,17 +106,22 @@ class _BeaconBroadcastingPageState extends State<BeaconBroadcastingPage>
                 // (2)ユーザーが入力した時にバリデーションチェックを行う
                 autovalidateMode: AutovalidateMode.onUserInteraction,
                 child: Container(
-                    padding:
-                        const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.stretch,
-                      children: [
-                        majorField,
-                        const SizedBox(height: 40),
-                        buttonBroadcast,
-                        const SizedBox(height: 30),
-                      ],
-                    )),
+                  padding:
+                      const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.stretch,
+                    children: [
+                      majorField,
+                      const SizedBox(height: 40),
+                      /*SizedBox(
+                        height: 200,
+                      ),*/
+                      //buttonBroadcast,
+                      const SizedBox(height: 30),
+                      buttonFight,
+                    ],
+                  ),
+                ),
               ),
       ),
     );
@@ -237,48 +240,13 @@ class _BeaconBroadcastingPageState extends State<BeaconBroadcastingPage>
     );
   }
 
-  Widget get Kind {
-    return Column(
-      mainAxisAlignment: MainAxisAlignment.center,
-      children: [
-        Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Column(
-              children: [
-                Icon(Icons.wifi, size: 50),
-                Text('受信'),
-              ],
-            ),
-            Text(
-              '  をタップ！',
-              style: TextStyle(fontSize: 20),
-            ),
-          ],
-        ),
-        SizedBox(height: 20),
-        Text(
-          '助けや応援を待ちましょう☺️',
-          style: TextStyle(fontSize: 17),
-        ),
-        /*SizedBox(
-          width: 585,
-          height: 313,
-          child: Image.asset(
-            'images/navigate.jpg',
-            fit: BoxFit.contain,
-          ),
-        ),*/
-      ],
-    );
-  }
-
   //下のボタン
-  Widget get buttonBroadcast {
+
+  Widget get buttonFight {
     final ButtonStyle raisedButtonStyle = ElevatedButton.styleFrom(
       onPrimary: Colors.brown[900],
       //ここで送信中の色を変えられる。
-      primary: Colors.pink[100],
+      primary: broadcasting ? Colors.lightBlue[200] : Colors.pink[100],
       minimumSize: const Size(88, 36),
       padding: const EdgeInsets.symmetric(vertical: 35),
       shape: const RoundedRectangleBorder(
@@ -288,17 +256,19 @@ class _BeaconBroadcastingPageState extends State<BeaconBroadcastingPage>
     return ElevatedButton(
       style: raisedButtonStyle,
       onPressed: () async {
-        /*if (broadcasting) {
+        if (broadcasting) {
           //発信停止
           await flutterBeacon.stopBroadcast();
-        } else {*/
-        //発信開始
-        await flutterBeacon.startBroadcast(BeaconBroadcast(
-          proximityUUID: uuidController.text,
-          major: isSelectedItem + 2,
-          minor: int.tryParse(minorController.text) ?? 0,
-        ));
-        //}
+
+          Navigator.pop(context);
+        } else {
+          //発信開始
+          await flutterBeacon.startBroadcast(BeaconBroadcast(
+            proximityUUID: uuidController.text,
+            major: 1,
+            minor: 0,
+          ));
+        }
 
         final isBroadcasting = await flutterBeacon.isBroadcasting();
 
@@ -307,15 +277,10 @@ class _BeaconBroadcastingPageState extends State<BeaconBroadcastingPage>
             broadcasting = isBroadcasting;
           });
         }
-
-        await Navigator.push(
-          context,
-          MaterialPageRoute(builder: (context) => NavigatePage()),
-        );
       },
       child: Text(
-        '助けを求める GO→',
-        style: TextStyle(fontSize: 25),
+        '${broadcasting ? '閉じる' : '解決したことを知らせる'}',
+        style: TextStyle(fontSize: 35),
       ),
     );
   }
