@@ -159,7 +159,7 @@ class _BeaconScanningPageState extends State<BeaconScanningPage>
           print('beacon圏内に入ったよ');
           if (notificationCount != 1) {
             if (Platform.isAndroid) {
-              notifyAndroid();
+              //notifyAndroid();
             }
             if (Platform.isIOS) {
               notifyIOS();
@@ -375,7 +375,7 @@ class _BeaconScanningPageState extends State<BeaconScanningPage>
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    Text('近くに聴覚過敏で助けを求めている人\nはいません。'),
+                    Text('メッセージを受信したら\nここに表示されます。'),
                   ],
                 ),
               )

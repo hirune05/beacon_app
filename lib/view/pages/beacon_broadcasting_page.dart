@@ -237,6 +237,13 @@ class _BeaconBroadcastingPageState extends State<BeaconBroadcastingPage>
     );
   }
 
+  Future<void> initScanBeacon() async {
+    // 公式のライブラリで用意されたビーコンスキャン初期化プロパティ
+    await flutterBeacon.initializeScanning;
+    // 権限チェック
+    await checkAllRequirements();
+  }
+
   Widget get Kind {
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,
