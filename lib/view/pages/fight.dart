@@ -151,7 +151,7 @@ class _FightPageState extends State<FightPage> with WidgetsBindingObserver {
   }
 
   //Major番号のTextFormField
-  Widget get majorField {
+  /*Widget get majorField {
     return Column(
       mainAxisAlignment: MainAxisAlignment.start,
       children: [
@@ -209,7 +209,7 @@ class _FightPageState extends State<FightPage> with WidgetsBindingObserver {
       ],
       //7
     );
-  }
+  }*/
 
   //Minor番号のTextFormField
   Widget get minorField {
@@ -244,7 +244,7 @@ class _FightPageState extends State<FightPage> with WidgetsBindingObserver {
     final ButtonStyle raisedButtonStyle = ElevatedButton.styleFrom(
       onPrimary: Colors.brown[900],
       //ここで送信中の色を変えられる。
-      primary: broadcasting ? Colors.lightBlue[200] : Colors.orange[400],
+      primary: Colors.orange[400],
       minimumSize: const Size(88, 36),
       padding: const EdgeInsets.symmetric(vertical: 30),
       shape: const RoundedRectangleBorder(
