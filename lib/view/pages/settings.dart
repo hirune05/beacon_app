@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:sumple_beacon/view/pages/beacon_scanning_page.dart';
 
+import 'manualpage.dart';
+
+
 class SettingsPage extends StatefulWidget {
   const SettingsPage({Key? key}) : super(key: key);
   @override
@@ -16,6 +19,17 @@ class _SettingsPage extends State<SettingsPage> with WidgetsBindingObserver {
   }
 
   Widget build(BuildContext context) {
+    final ButtonStyle raisedButtonStyle = ElevatedButton.styleFrom(
+      onPrimary: Colors.brown[900],
+      //ここで送信中の色を変えられる。
+      primary: Colors.pink[100],
+      minimumSize: const Size(88, 36),
+      padding: const EdgeInsets.symmetric(vertical: 35),
+      shape: const RoundedRectangleBorder(
+        borderRadius: BorderRadius.all(Radius.circular(80)),
+      ),
+    );
+
     return Scaffold(
       resizeToAvoidBottomInset: false,
       appBar: AppBar(
@@ -28,6 +42,48 @@ class _SettingsPage extends State<SettingsPage> with WidgetsBindingObserver {
         shape:
             Border(bottom: BorderSide(color: Colors.pink.shade100, width: 6)),
       ),
+      body: Center(
+      child: Column(
+        children: [
+          ElevatedButton(
+              style: raisedButtonStyle,
+              onPressed: (){
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => const ManualPage()),
+                );
+              },
+              child: Text('使い方',
+              style: TextStyle(fontSize: 25),)
+          ),
+          ElevatedButton(
+              style: raisedButtonStyle,
+              onPressed: (){
+                showDialog(
+                  context: context,
+                  builder: (_) {
+                    return AlertDialog(
+                      title: Text("マーク"),
+                      content: Image(image:
+                      NetworkImage('http://www.ishiimark.com/Image/symbol/symbol-irr-21.jpg',)
+                      ),
+                      actions: <Widget>[
+                        // ボタン領域
+                        FlatButton(
+                          child: Text("×"),
+                          onPressed: () => Navigator.pop(context),
+                        ),
+                      ],
+                    );
+                  },
+                );
+              },
+              child: Text('マークを表示',
+              style: TextStyle(fontSize: 25),)
+          ),
+        ],
+      ),
+    ),
     );
   }
 }

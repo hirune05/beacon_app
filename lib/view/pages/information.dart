@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:sumple_beacon/view/pages/beacon_scanning_page.dart';
+import 'package:url_launcher/link.dart';
+
+import 'webpage.dart';
 
 class InformationPage extends StatefulWidget {
   const InformationPage({Key? key}) : super(key: key);
@@ -17,6 +20,16 @@ class _InformationPageState extends State<InformationPage>
   }
 
   Widget build(BuildContext context) {
+    final ButtonStyle raisedButtonStyle = ElevatedButton.styleFrom(
+      onPrimary: Colors.brown[900],
+      //ここで送信中の色を変えられる。
+      primary: Colors.pink[100],
+      minimumSize: const Size(88, 36),
+      padding: const EdgeInsets.symmetric(vertical: 35),
+      shape: const RoundedRectangleBorder(
+        borderRadius: BorderRadius.all(Radius.circular(80)),
+      ),
+    );
     return Scaffold(
       resizeToAvoidBottomInset: false,
       appBar: AppBar(
@@ -28,6 +41,17 @@ class _InformationPageState extends State<InformationPage>
         ),
         shape:
             Border(bottom: BorderSide(color: Colors.pink.shade100, width: 6)),
+      ),
+      body: Center(
+        child: ElevatedButton(
+            style: raisedButtonStyle,
+            onPressed: (){
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => const WebPage()),
+              );
+            },
+            child: Text('聴覚過敏について知る'))
       ),
     );
   }
