@@ -111,7 +111,7 @@ class _FightPageState extends State<FightPage> with WidgetsBindingObserver {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.stretch,
                     children: [
-                      majorField,
+                      //majorField,
                       const SizedBox(height: 40),
                       /*SizedBox(
                         height: 200,
@@ -277,7 +277,7 @@ class _FightPageState extends State<FightPage> with WidgetsBindingObserver {
       },
       child: Text(
         '協力と理解を示す',
-        style: TextStyle(fontSize: 35),
+        style: TextStyle(fontSize: 28),
       ),
     );
   }

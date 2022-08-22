@@ -111,7 +111,7 @@ class _ThanksPageState extends State<ThanksPage> with WidgetsBindingObserver {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.stretch,
                     children: [
-                      majorField,
+                      //majorField,
                       const SizedBox(height: 40),
                       /*SizedBox(
                         height: 200,
@@ -151,7 +151,7 @@ class _ThanksPageState extends State<ThanksPage> with WidgetsBindingObserver {
   }
 
   //Major番号のTextFormField
-  Widget get majorField {
+  /*Widget get majorField {
     return Column(
       mainAxisAlignment: MainAxisAlignment.start,
       children: [
@@ -209,7 +209,7 @@ class _ThanksPageState extends State<ThanksPage> with WidgetsBindingObserver {
       ],
       //7
     );
-  }
+  }*/
 
   //Minor番号のTextFormField
   Widget get minorField {
@@ -279,8 +279,8 @@ class _ThanksPageState extends State<ThanksPage> with WidgetsBindingObserver {
         }
       },
       child: Text(
-        '${broadcasting ? '閉じる' : '解決したことを知らせる'}',
-        style: TextStyle(fontSize: 35),
+        '${broadcasting ? '閉じる' : '解決を知らせる'}',
+        style: TextStyle(fontSize: 28),
       ),
     );
   }

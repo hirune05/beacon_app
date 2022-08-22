@@ -391,7 +391,9 @@ class _BeaconScanningPageState extends State<BeaconScanningPage>
                           child: Text(
                             beacon.major == 0
                                 ? 'あなたに協力してくれている人がいます。'
-                                : '半径${beacon.accuracy}m以内に聴覚過敏で苦しんでいる人がいます',
+                                : beacon.major == 1
+                                    ? helps[1]
+                                    : '${helps[beacon.major]}',
                             style: const TextStyle(fontSize: 13.0),
                           ),
                           flex: 2,
@@ -402,7 +404,9 @@ class _BeaconScanningPageState extends State<BeaconScanningPage>
                           children: [
                             Flexible(
                               child: Text(
-                                '${helps[beacon.major]}',
+                                beacon.major == 1
+                                    ? ''
+                                    : '半径${beacon.accuracy}m以内に聴覚過敏で苦しんでいる人がいます',
                                 style: const TextStyle(fontSize: 13.0),
                               ),
                               flex: 1,
@@ -410,68 +414,73 @@ class _BeaconScanningPageState extends State<BeaconScanningPage>
                             ),
                           ],
                         ),
-                        trailing: Container(
-                          decoration: BoxDecoration(
-                            shape: BoxShape.circle,
-                            boxShadow: [
-                              BoxShadow(
-                                color: Colors.grey, //色
-                                spreadRadius: 5,
-                                blurRadius: 5,
-                                offset: Offset(1, 1),
-                              ),
-                            ],
-                            color: Colors.white,
-                          ),
-                          child: beacon.major == 0
-                              ? Column(
-                                  mainAxisSize: MainAxisSize.min,
-                                  children: <Widget>[
-                                    IconButton(
-                                      icon: const Icon(Icons.favorite,
-                                          color: Colors.pink),
-                                      onPressed: () async {
-                                        await Navigator.push(
-                                          context,
-                                          MaterialPageRoute(
-                                              builder: (context) =>
-                                                  ThanksPage()),
-                                        );
-                                        initScanBeacon();
-                                      },
+                        trailing: beacon.major == 1
+                            ? Text(
+                                '🎉',
+                                style: TextStyle(fontSize: 20),
+                              )
+                            : Container(
+                                decoration: BoxDecoration(
+                                  shape: BoxShape.circle,
+                                  boxShadow: [
+                                    BoxShadow(
+                                      color: Colors.grey, //色
+                                      spreadRadius: 5,
+                                      blurRadius: 5,
+                                      offset: Offset(1, 1),
                                     ),
-                                    /*Text(
-                                'ファイト！',
-                                style:
-                                    TextStyle(fontSize: 4, color: Colors.red),
-                              ),*/
                                   ],
-                                )
-                              : Column(
-                                  mainAxisSize: MainAxisSize.min,
-                                  children: <Widget>[
-                                    IconButton(
-                                      icon: const Icon(
-                                          Icons.local_fire_department,
-                                          color: Colors.orange),
-                                      onPressed: () async {
-                                        await Navigator.push(
-                                          context,
-                                          MaterialPageRoute(
-                                              builder: (context) =>
-                                                  FightPage()),
-                                        );
-                                        initScanBeacon();
-                                      },
-                                    ),
-                                    /*Text(
-                                'ファイト！',
-                                style:
-                                    TextStyle(fontSize: 4, color: Colors.red),
-                              ),*/
-                                  ],
+                                  color: Colors.white,
                                 ),
-                        ),
+                                child: beacon.major == 0
+                                    ? Column(
+                                        mainAxisSize: MainAxisSize.min,
+                                        children: <Widget>[
+                                          IconButton(
+                                            icon: const Icon(Icons.favorite,
+                                                color: Colors.pink),
+                                            onPressed: () async {
+                                              await Navigator.push(
+                                                context,
+                                                MaterialPageRoute(
+                                                    builder: (context) =>
+                                                        ThanksPage()),
+                                              );
+                                              initScanBeacon();
+                                            },
+                                          ),
+                                          /*Text(
+                                'ファイト！',
+                                style:
+                                    TextStyle(fontSize: 4, color: Colors.red),
+                              ),*/
+                                        ],
+                                      )
+                                    : Column(
+                                        mainAxisSize: MainAxisSize.min,
+                                        children: <Widget>[
+                                          IconButton(
+                                            icon: const Icon(
+                                                Icons.local_fire_department,
+                                                color: Colors.orange),
+                                            onPressed: () async {
+                                              await Navigator.push(
+                                                context,
+                                                MaterialPageRoute(
+                                                    builder: (context) =>
+                                                        FightPage()),
+                                              );
+                                              initScanBeacon();
+                                            },
+                                          ),
+                                          /*Text(
+                                'ファイト！',
+                                style:
+                                    TextStyle(fontSize: 4, color: Colors.red),
+                              ),*/
+                                        ],
+                                      ),
+                              ),
                       );
                     },
                   ),
