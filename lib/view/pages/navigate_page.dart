@@ -1,4 +1,4 @@
-import 'package:flutter/material.dart';
+/*import 'package:flutter/material.dart';
 
 import 'package:flutter_beacon/flutter_beacon.dart';
 import 'package:sumple_beacon/util/constants.dart';
@@ -174,4 +174,4 @@ class _NavigatePageState extends State<NavigatePage>
       ),
     );
   }
-}
+}*/

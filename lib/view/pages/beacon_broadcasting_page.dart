@@ -237,13 +237,6 @@ class _BeaconBroadcastingPageState extends State<BeaconBroadcastingPage>
     );
   }
 
-  Future<void> initScanBeacon() async {
-    // 公式のライブラリで用意されたビーコンスキャン初期化プロパティ
-    await flutterBeacon.initializeScanning;
-    // 権限チェック
-    await checkAllRequirements();
-  }
-
   Widget get Kind {
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,
@@ -314,10 +307,51 @@ class _BeaconBroadcastingPageState extends State<BeaconBroadcastingPage>
             broadcasting = isBroadcasting;
           });
         }
-
-        await Navigator.push(
-          context,
-          MaterialPageRoute(builder: (context) => NavigatePage()),
+        /*title: Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Column(
+                    children: [
+                      Icon(Icons.wifi, size: 50),
+                      Text('受信'),
+                    ],
+                  ),
+                  Text(
+                    '  をタップ！',
+                    style: TextStyle(fontSize: 20),
+                  ),
+                ],
+              ),
+              content: Text('助けや応援を待ちましょう☺️'),*/
+        showDialog(
+          barrierDismissible: false,
+          context: context,
+          builder: (BuildContext context) {
+            return AlertDialog(
+              title: Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Column(
+                    children: [
+                      Icon(Icons.wifi, size: 50),
+                      Text('受信'),
+                    ],
+                  ),
+                  Text(
+                    '  をタップ！',
+                    style: TextStyle(fontSize: 20),
+                  ),
+                ],
+              ),
+              content: Text('助けや応援を待ちましょう☺️'),
+              actions: [
+                TextButton(
+                  onPressed: () => Navigator.pop(context),
+                  child: Text('閉じる'),
+                ),
+              ],
+            );
+          },
         );
       },
       child: Text(
