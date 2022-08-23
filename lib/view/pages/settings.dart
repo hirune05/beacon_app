@@ -45,6 +45,7 @@ class _SettingsPage extends State<SettingsPage> with WidgetsBindingObserver {
       body: Center(
       child: Column(
         children: [
+          //アプリの使い方ウェブページへ飛ぶ
           ElevatedButton(
               style: raisedButtonStyle,
               onPressed: (){
@@ -56,20 +57,22 @@ class _SettingsPage extends State<SettingsPage> with WidgetsBindingObserver {
               child: Text('使い方',
               style: TextStyle(fontSize: 25),)
           ),
+         //聴覚過敏マークの表示
           ElevatedButton(
               style: raisedButtonStyle,
               onPressed: (){
                 showDialog(
+                  barrierDismissible: false,
                   context: context,
-                  builder: (_) {
+                  builder: (BuildContext context) {
                     return AlertDialog(
                       title: Text("マーク"),
                       content: Image(image:
                       NetworkImage('http://www.ishiimark.com/Image/symbol/symbol-irr-21.jpg',)
                       ),
-                      actions: <Widget>[
+                      actions: [
                         // ボタン領域
-                        FlatButton(
+                        TextButton(
                           child: Text("×"),
                           onPressed: () => Navigator.pop(context),
                         ),
