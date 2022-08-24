@@ -90,7 +90,7 @@ class _FightPageState extends State<FightPage> with WidgetsBindingObserver {
       // (1) テキスト入力が表示された際に、Widgetがはみ出してエラー表示されるのを回避
       resizeToAvoidBottomInset: false,
       appBar: AppBar(
-        leading: Image.asset('images/icon.png'),
+        //leading: Image.asset('images/icon.png'),
         backgroundColor: broadcastingColor,
         title: const Text(
           '送信',
@@ -115,6 +115,11 @@ class _FightPageState extends State<FightPage> with WidgetsBindingObserver {
                     children: [
                       //majorField,
                       const SizedBox(height: 40),
+                      Container(
+                        height: 250,
+                        width: 250,
+                        child: Image.asset('images/cooperation.png'),
+                      ),
                       /*SizedBox(
                         height: 200,
                       ),*/

@@ -67,3 +67,5 @@ flutter:
   uses-material-design: true
   assets:
     - images/icon.png
+    - images/thanks.png
+    - images/cooperation.png
