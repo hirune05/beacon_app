@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:sumple_beacon/view/pages/beacon_scanning_page.dart';
+import 'package:sumple_beacon/view/pages/webpage.dart';
 import 'package:url_launcher/link.dart';
 
 class InformationPage extends StatefulWidget {

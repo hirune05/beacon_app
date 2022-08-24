@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import 'package:flutter_beacon/flutter_beacon.dart';
 import 'package:sumple_beacon/util/constants.dart';
+import 'package:sumple_beacon/view/pages/beacon_broadcasting_page.dart';
 
 int isSelectedItem = 0;
 
@@ -90,7 +91,7 @@ class _ThanksPageState extends State<ThanksPage> with WidgetsBindingObserver {
       resizeToAvoidBottomInset: false,
       appBar: AppBar(
         leading: Image.asset('images/icon.png'),
-        backgroundColor: Colors.white,
+        backgroundColor: broadcastingColor,
         title: const Text(
           '送信',
           style: TextStyle(color: Color.fromARGB(255, 21, 9, 4)),
@@ -106,6 +107,7 @@ class _ThanksPageState extends State<ThanksPage> with WidgetsBindingObserver {
                 // (2)ユーザーが入力した時にバリデーションチェックを行う
                 autovalidateMode: AutovalidateMode.onUserInteraction,
                 child: Container(
+                  color: broadcastingColor,
                   padding:
                       const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
                   child: Column(

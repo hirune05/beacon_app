@@ -5,6 +5,7 @@ import 'package:sumple_beacon/util/constants.dart';
 import 'package:sumple_beacon/view/pages/navigate_page.dart';
 
 int isSelectedItem = 0;
+Color? broadcastingColor = Colors.lightGreen[100];
 
 class BeaconBroadcastingPage extends StatefulWidget {
   const BeaconBroadcastingPage({Key? key}) : super(key: key);
@@ -92,7 +93,7 @@ class _BeaconBroadcastingPageState extends State<BeaconBroadcastingPage>
       resizeToAvoidBottomInset: false,
       appBar: AppBar(
         leading: Image.asset('images/icon.png'),
-        backgroundColor: Colors.white,
+        backgroundColor: broadcastingColor,
         title: const Text(
           '送信',
           style: TextStyle(color: Color.fromARGB(255, 21, 9, 4)),
@@ -108,6 +109,7 @@ class _BeaconBroadcastingPageState extends State<BeaconBroadcastingPage>
                 // (2)ユーザーが入力した時にバリデーションチェックを行う
                 autovalidateMode: AutovalidateMode.onUserInteraction,
                 child: Container(
+                    color: broadcastingColor,
                     padding:
                         const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
                     child: Column(

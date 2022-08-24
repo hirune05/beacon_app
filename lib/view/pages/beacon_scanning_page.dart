@@ -18,6 +18,7 @@ List<String> helps = [
   "大きな声が苦手です。"
 ];
 
+Color? scanningColor = Colors.indigo[100];
 int notificationCount = 0;
 int helpCountBase = 0;
 int helpCountSecond = 0;
@@ -253,7 +254,7 @@ class _BeaconScanningPageState extends State<BeaconScanningPage>
           style: TextStyle(color: Colors.black),
         ),
         leading: Image.asset('images/icon.png'),
-        backgroundColor: Colors.white,
+        backgroundColor: scanningColor,
         shape:
             Border(bottom: BorderSide(color: Colors.pink.shade100, width: 6)),
         actions: [
@@ -361,23 +362,28 @@ class _BeaconScanningPageState extends State<BeaconScanningPage>
           ),
         ],
       ),
-      body: GestureDetector(
+      body: Container(
+        color: scanningColor,
         child: _beacons.isEmpty
             //何も来てない時
-            ? Container(
-                margin: EdgeInsets.all(21),
-                //padding: EdgeInsets.all(50),
-                decoration: BoxDecoration(
-                  border: Border.all(color: Colors.black, width: 2),
-                  borderRadius: BorderRadius.circular(15),
-                  color: Colors.white,
-                ),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Text('メッセージを受信したら\nここに表示されます。'),
-                  ],
-                ),
+            ? Column(
+                children: [
+                  Container(
+                    margin: EdgeInsets.all(30),
+                    //padding: EdgeInsets.all(50),
+                    decoration: BoxDecoration(
+                      border: Border.all(color: Colors.black, width: 2),
+                      borderRadius: BorderRadius.circular(15),
+                      color: Colors.white,
+                    ),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Text('メッセージを受信したら\nここに表示されます。'),
+                      ],
+                    ),
+                  ),
+                ],
               )
             //何か来た時
             : ListView(
@@ -390,7 +396,7 @@ class _BeaconScanningPageState extends State<BeaconScanningPage>
                         title: Flexible(
                           child: Text(
                             beacon.major == 0
-                                ? 'あなたに協力してくれている人がいます。'
+                                ? '協力するよ！頑張って!!'
                                 : beacon.major == 1
                                     ? helps[1]
                                     : '${helps[beacon.major]}',
@@ -406,7 +412,9 @@ class _BeaconScanningPageState extends State<BeaconScanningPage>
                               child: Text(
                                 beacon.major == 1
                                     ? ''
-                                    : '半径${beacon.accuracy}m以内に聴覚過敏で苦しんでいる人がいます',
+                                    : beacon.major == 0
+                                        ? '半径${beacon.accuracy}m以内にあなたを理解してくれている人がいます。'
+                                        : '半径${beacon.accuracy}m以内に聴覚過敏で苦しんでいる人がいます',
                                 style: const TextStyle(fontSize: 13.0),
                               ),
                               flex: 1,
@@ -486,31 +494,6 @@ class _BeaconScanningPageState extends State<BeaconScanningPage>
                   ),
                 ).toList(),
               ),
-
-        //一つだけでいい場合
-        /*ListTile(
-                        title: Flexible(
-                          child: Text(
-                            '半径${_beacons.first.accuracy}m以内に聴覚過敏で苦しんでいる人がいます',
-                            style: const TextStyle(fontSize: 13.0),
-                          ),
-                          flex: 2,
-                          fit: FlexFit.tight,
-                        ),
-                        subtitle: Row(
-                          mainAxisSize: MainAxisSize.max,
-                          children: [
-                            Flexible(
-                              child: Text(
-                                '${helps[_beacons.first.major]}',
-                                style: const TextStyle(fontSize: 13.0),
-                              ),
-                              flex: 1,
-                              fit: FlexFit.tight,
-                            ),
-                          ],
-                        ),
-                      )*/
       ),
     );
   }
