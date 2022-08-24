@@ -6,12 +6,21 @@ PODS:
     - Flutter
   - flutter_local_notifications (0.0.1):
     - Flutter
+  - path_provider_ios (0.0.1):
+    - Flutter
+  - url_launcher_ios (0.0.1):
+    - Flutter
+  - webview_flutter_wkwebview (0.0.1):
+    - Flutter
 
 DEPENDENCIES:
   - beacon_broadcast (from `.symlinks/plugins/beacon_broadcast/ios`)
   - Flutter (from `Flutter`)
   - flutter_beacon (from `.symlinks/plugins/flutter_beacon/ios`)
   - flutter_local_notifications (from `.symlinks/plugins/flutter_local_notifications/ios`)
+  - path_provider_ios (from `.symlinks/plugins/path_provider_ios/ios`)
+  - url_launcher_ios (from `.symlinks/plugins/url_launcher_ios/ios`)
+  - webview_flutter_wkwebview (from `.symlinks/plugins/webview_flutter_wkwebview/ios`)
 
 EXTERNAL SOURCES:
   beacon_broadcast:
@@ -22,12 +31,21 @@ EXTERNAL SOURCES:
     :path: ".symlinks/plugins/flutter_beacon/ios"
   flutter_local_notifications:
     :path: ".symlinks/plugins/flutter_local_notifications/ios"
+  path_provider_ios:
+    :path: ".symlinks/plugins/path_provider_ios/ios"
+  url_launcher_ios:
+    :path: ".symlinks/plugins/url_launcher_ios/ios"
+  webview_flutter_wkwebview:
+    :path: ".symlinks/plugins/webview_flutter_wkwebview/ios"
 
 SPEC CHECKSUMS:
   beacon_broadcast: 2c2562111f7b7e0f1ab59487f6bc805805e3c9f3
   Flutter: f04841e97a9d0b0a8025694d0796dd46242b2854
   flutter_beacon: 2525df9d96b904623f325968a73bac805e648119
   flutter_local_notifications: 0c0b1ae97e741e1521e4c1629a459d04b9aec743
+  path_provider_ios: 14f3d2fd28c4fdb42f44e0f751d12861c43cee02
+  url_launcher_ios: 839c58cdb4279282219f5e248c3321761ff3c4de
+  webview_flutter_wkwebview: b7e70ef1ddded7e69c796c7390ee74180182971f
 
 PODFILE CHECKSUM: ef19549a9bc3046e7bb7d2fab4d021637c0c58a3
 

@@ -40,6 +40,9 @@ dependencies:
   beacon_broadcast: ^0.3.1
   riverpod: ^1.0.3
   flutter_local_notifications: ^9.7.0
+  webview_flutter: ^3.0.4
+  url_launcher:
+  path_provider:
 
 dev_dependencies:
   flutter_test:
