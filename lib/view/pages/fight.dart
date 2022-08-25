@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'package:flutter_beacon/flutter_beacon.dart';
+import 'package:sumple_beacon/main.dart';
 import 'package:sumple_beacon/util/constants.dart';
 import 'package:sumple_beacon/view/pages/beacon_broadcasting_page.dart';
 
@@ -90,6 +91,7 @@ class _FightPageState extends State<FightPage> with WidgetsBindingObserver {
       // (1) テキスト入力が表示された際に、Widgetがはみ出してエラー表示されるのを回避
       resizeToAvoidBottomInset: false,
       appBar: AppBar(
+        iconTheme: IconThemeData(color: subcolor),
         //leading: Image.asset('images/icon.png'),
         backgroundColor: broadcastingColor,
         title: const Text(
@@ -284,7 +286,7 @@ class _FightPageState extends State<FightPage> with WidgetsBindingObserver {
       },
       child: Text(
         '協力と理解を示す',
-        style: TextStyle(fontSize: 28),
+        style: TextStyle(fontSize: 28, color: subcolor),
       ),
     );
   }

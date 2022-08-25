@@ -21,7 +21,7 @@ class TabItemData {
     TabItem.scanning: TabItemData(title: '受信', icon: Icons.wifi),
     TabItem.broadcasting: TabItemData(title: '送信', icon: Icons.send),
     TabItem.information:
-        TabItemData(title: '情報', icon: Icons.perm_device_information),
+        TabItemData(title: 'マーク', icon: Icons.perm_device_information),
     TabItem.settings: TabItemData(title: 'その他', icon: Icons.list),
   };
 }

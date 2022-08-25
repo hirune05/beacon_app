@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:sumple_beacon/main.dart';
 import 'package:sumple_beacon/view/pages/beacon_scanning_page.dart';
 import 'package:sumple_beacon/view/pages/webpage.dart';
 import 'package:url_launcher/link.dart';
@@ -20,7 +21,7 @@ class _InformationPageState extends State<InformationPage>
 
   Widget build(BuildContext context) {
     final ButtonStyle raisedButtonStyle = ElevatedButton.styleFrom(
-      onPrimary: Colors.brown[900],
+      onPrimary: subcolor,
       //ここで送信中の色を変えられる。
       primary: Colors.pink[100],
       minimumSize: const Size(88, 36),
@@ -35,22 +36,13 @@ class _InformationPageState extends State<InformationPage>
         leading: Image.asset('images/icon.png'),
         backgroundColor: Colors.white,
         title: const Text(
-          '情報',
+          'マーク',
           style: TextStyle(color: Color.fromARGB(255, 21, 9, 4)),
         ),
         shape:
             Border(bottom: BorderSide(color: Colors.pink.shade100, width: 6)),
       ),
-      body: Center(
-          child: ElevatedButton(
-              style: raisedButtonStyle,
-              onPressed: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => const WebPage()),
-                );
-              },
-              child: Text('聴覚過敏について知る'))),
+      body: Center(child: Image.asset('images/mark.png')),
     );
   }
 }

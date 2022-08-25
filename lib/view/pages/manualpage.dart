@@ -1,6 +1,7 @@
 import 'dart:async';
 import 'dart:io'; // Add this import.
 import 'package:flutter/material.dart';
+import 'package:sumple_beacon/main.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 
 import 'navigation_controls.dart';
@@ -37,7 +38,10 @@ class _ManualPageState extends State<ManualPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        leading: Image.asset('images/icon.png'),
+        iconTheme: IconThemeData(
+          color: subcolor,
+        ),
+        //leading: Image.asset('images/icon.png'),
         backgroundColor: Colors.white,
         title: const Text(
           '使い方',

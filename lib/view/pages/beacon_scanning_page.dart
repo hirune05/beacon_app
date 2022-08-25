@@ -4,6 +4,7 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_beacon/flutter_beacon.dart';
+import 'package:sumple_beacon/main.dart';
 import 'package:sumple_beacon/view/notification.dart';
 import 'package:sumple_beacon/view/pages/fight.dart';
 import 'package:sumple_beacon/view/pages/thanks.dart';
@@ -251,7 +252,7 @@ class _BeaconScanningPageState extends State<BeaconScanningPage>
       appBar: AppBar(
         title: const Text(
           '受信',
-          style: TextStyle(color: Colors.black),
+          style: TextStyle(color: Color.fromARGB(255, 21, 9, 4)),
         ),
         leading: Image.asset('images/icon.png'),
         backgroundColor: scanningColor,
@@ -372,14 +373,18 @@ class _BeaconScanningPageState extends State<BeaconScanningPage>
                     margin: EdgeInsets.all(30),
                     //padding: EdgeInsets.all(50),
                     decoration: BoxDecoration(
-                      border: Border.all(color: Colors.black, width: 2),
+                      border: Border.all(
+                          color: Color.fromARGB(255, 21, 9, 4), width: 2),
                       borderRadius: BorderRadius.circular(15),
                       color: Colors.white,
                     ),
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        Text('メッセージを受信したら\nここに表示されます。'),
+                        Text(
+                          'メッセージを受信したら\nここに表示されます。',
+                          style: TextStyle(color: subcolor),
+                        ),
                       ],
                     ),
                   ),
@@ -400,7 +405,9 @@ class _BeaconScanningPageState extends State<BeaconScanningPage>
                                 : beacon.major == 1
                                     ? helps[1]
                                     : '${helps[beacon.major]}',
-                            style: const TextStyle(fontSize: 13.0),
+                            style: const TextStyle(
+                                fontSize: 13.0,
+                                color: Color.fromARGB(255, 21, 9, 4)),
                           ),
                           flex: 2,
                           fit: FlexFit.tight,
@@ -415,7 +422,9 @@ class _BeaconScanningPageState extends State<BeaconScanningPage>
                                     : beacon.major == 0
                                         ? '半径${beacon.accuracy}m以内にあなたを理解してくれている人がいます。'
                                         : '半径${beacon.accuracy}m以内に聴覚過敏で苦しんでいる人がいます',
-                                style: const TextStyle(fontSize: 13.0),
+                                style: const TextStyle(
+                                    fontSize: 13.0,
+                                    color: Color.fromARGB(255, 21, 9, 4)),
                               ),
                               flex: 1,
                               fit: FlexFit.tight,

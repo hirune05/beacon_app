@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:sumple_beacon/main.dart';
 import 'package:sumple_beacon/view/pages/beacon_scanning_page.dart';
+import 'package:sumple_beacon/view/pages/webpage.dart';
 
 import 'manualpage.dart';
 
@@ -19,7 +21,7 @@ class _SettingsPage extends State<SettingsPage> with WidgetsBindingObserver {
 
   Widget build(BuildContext context) {
     final ButtonStyle raisedButtonStyle = ElevatedButton.styleFrom(
-      onPrimary: Colors.brown[900],
+      onPrimary: subcolor,
       //ここで送信中の色を変えられる。
       primary: Colors.pink[100],
       minimumSize: const Size(88, 36),
@@ -44,48 +46,70 @@ class _SettingsPage extends State<SettingsPage> with WidgetsBindingObserver {
       body: Center(
         child: Column(
           children: [
+            SizedBox(height: 50),
             //アプリの使い方ウェブページへ飛ぶ
-            ElevatedButton(
-                style: raisedButtonStyle,
+            SizedBox(
+              width: double.infinity,
+              height: 80,
+              child: ElevatedButton(
+                style: ElevatedButton.styleFrom(
+                  primary: Colors.white, //ボタンの背景色
+                ),
                 onPressed: () {
                   Navigator.push(
                     context,
                     MaterialPageRoute(builder: (context) => const ManualPage()),
                   );
                 },
-                child: Text(
-                  '使い方',
-                  style: TextStyle(fontSize: 25),
-                )),
-            //聴覚過敏マークの表示
-            ElevatedButton(
-                style: raisedButtonStyle,
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Icon(Icons.help_outline, color: subcolor, size: 45),
+                    Text(
+                      '使い方',
+                      style: TextStyle(fontSize: 25, color: subcolor),
+                    ),
+                    Icon(Icons.navigate_next, color: subcolor, size: 45),
+                  ],
+                ),
+              ),
+            ),
+            SizedBox(height: 50),
+            //情報ページの表示
+            SizedBox(
+              width: double.infinity,
+              height: 80,
+              child: ElevatedButton(
+                style: ElevatedButton.styleFrom(
+                  primary: Colors.white, //ボタンの背景色
+                ),
                 onPressed: () {
-                  showDialog(
-                    barrierDismissible: false,
-                    context: context,
-                    builder: (BuildContext context) {
-                      return AlertDialog(
-                        title: Text("マーク"),
-                        content: Image(
-                            image: NetworkImage(
-                          'http://www.ishiimark.com/Image/symbol/symbol-irr-21.jpg',
-                        )),
-                        actions: [
-                          // ボタン領域
-                          TextButton(
-                            child: Text("×"),
-                            onPressed: () => Navigator.pop(context),
-                          ),
-                        ],
-                      );
-                    },
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => const WebPage()),
                   );
                 },
-                child: Text(
-                  'マークを表示',
-                  style: TextStyle(fontSize: 25),
-                )),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Icon(
+                      Icons.headphones,
+                      color: subcolor,
+                      size: 40,
+                    ),
+                    Text(
+                      '聴覚過敏について知る',
+                      style: TextStyle(fontSize: 20, color: subcolor),
+                    ),
+                    Icon(
+                      Icons.navigate_next,
+                      color: subcolor,
+                      size: 45,
+                    )
+                  ],
+                ),
+              ),
+            ),
           ],
         ),
       ),

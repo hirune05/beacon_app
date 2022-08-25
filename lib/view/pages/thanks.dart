@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'package:flutter_beacon/flutter_beacon.dart';
+import 'package:sumple_beacon/main.dart';
 import 'package:sumple_beacon/util/constants.dart';
 import 'package:sumple_beacon/view/pages/beacon_broadcasting_page.dart';
 
@@ -90,6 +91,7 @@ class _ThanksPageState extends State<ThanksPage> with WidgetsBindingObserver {
       // (1) テキスト入力が表示された際に、Widgetがはみ出してエラー表示されるのを回避
       resizeToAvoidBottomInset: false,
       appBar: AppBar(
+        iconTheme: IconThemeData(color: subcolor),
         //leading: Image.asset('images/icon.png'),
         backgroundColor: broadcastingColor,
         title: const Text(
@@ -251,7 +253,7 @@ class _ThanksPageState extends State<ThanksPage> with WidgetsBindingObserver {
 
   Widget get buttonFight {
     final ButtonStyle raisedButtonStyle = ElevatedButton.styleFrom(
-      onPrimary: Colors.brown[900],
+      onPrimary: subcolor,
       //ここで送信中の色を変えられる。
       primary: broadcasting ? Colors.lightBlue[200] : Colors.pink[100],
       minimumSize: const Size(88, 36),
@@ -287,7 +289,7 @@ class _ThanksPageState extends State<ThanksPage> with WidgetsBindingObserver {
       },
       child: Text(
         '${broadcasting ? '閉じる' : '解決を知らせる'}',
-        style: TextStyle(fontSize: 28),
+        style: TextStyle(fontSize: 28, color: subcolor),
       ),
     );
   }

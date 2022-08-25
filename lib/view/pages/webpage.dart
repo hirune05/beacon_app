@@ -1,6 +1,7 @@
 import 'dart:async';
-import 'dart:io';                            // Add this import.
+import 'dart:io'; // Add this import.
 import 'package:flutter/material.dart';
+import 'package:sumple_beacon/main.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 
 import 'navigation_controls.dart';
@@ -37,14 +38,15 @@ class _WebPageState extends State<WebPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        leading: Image.asset('images/icon.png'),
+        iconTheme: IconThemeData(color: subcolor),
+        //leading: Image.asset('images/icon.png'),
         backgroundColor: Colors.white,
         title: const Text(
           '聴覚過敏について知る',
           style: TextStyle(color: Color.fromARGB(255, 21, 9, 4)),
         ),
         shape:
-        Border(bottom: BorderSide(color: Colors.pink.shade100, width: 6)),
+            Border(bottom: BorderSide(color: Colors.pink.shade100, width: 6)),
         actions: [
           NavigationControls(controller: controller),
         ],

@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:sumple_beacon/view/home_page.dart';
 
+Color? subcolor = Color.fromARGB(255, 21, 9, 4);
+
 void main() {
   runApp(const MainApp());
 }
