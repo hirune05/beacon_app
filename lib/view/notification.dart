@@ -10,7 +10,7 @@ Future<void> notifyIOS() {
     detail = 'アプリご利用ありがとうございます！';
     notificationCount++;
   } else {
-    detail = '近くに助けを求めている人がいます。アプリを開き、詳細を確かめましょう';
+    detail = '何かを受信しました。アプリを開き、受信画面を確かめましょう';
   }
   return flnp
       .initialize(
