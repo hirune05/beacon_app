@@ -22,6 +22,6 @@ class TabItemData {
     TabItem.broadcasting: TabItemData(title: '送信', icon: Icons.send),
     TabItem.information:
         TabItemData(title: 'マーク', icon: Icons.perm_device_information),
-    TabItem.settings: TabItemData(title: 'その他', icon: Icons.list),
+    TabItem.settings: TabItemData(title: '地図', icon: Icons.map_outlined),
   };
 }

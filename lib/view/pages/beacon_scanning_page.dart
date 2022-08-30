@@ -12,7 +12,7 @@ import 'package:sumple_beacon/view/pages/thanks.dart';
 import '../../util/constants.dart';
 
 List<String> helps = [
-  "協力するよ！頑張って!!",
+  "席を交換してもいいよ。頑張って！",
   "問題が解決しました。ありがとう！",
   /* "食事中の食器の擦れあう音が苦手です。",
   "ささやき声が苦手です。",

@@ -44,7 +44,7 @@ class _ManualPageState extends State<ManualPage> with WidgetsBindingObserver {
         //leading: Image.asset('images/icon.png'),
         backgroundColor: Colors.white,
         title: const Text(
-          '使い方',
+          'マップ',
           style: TextStyle(color: Color.fromARGB(255, 21, 9, 4)),
         ),
         shape:
