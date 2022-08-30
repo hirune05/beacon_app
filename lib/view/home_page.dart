@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:sumple_beacon/view/pages/beacon_broadcasting_page.dart';
 import 'package:sumple_beacon/view/pages/information.dart';
+import 'package:sumple_beacon/view/pages/manualpage.dart';
 import 'package:sumple_beacon/view/pages/settings.dart';
 import 'cupertino_home_scaffold.dart';
 import 'pages/beacon_scanning_page.dart';
@@ -30,7 +31,7 @@ class _HomePageState extends State<HomePage> {
       TabItem.scanning: (_) => const BeaconScanningPage(),
       TabItem.broadcasting: (_) => const BeaconBroadcastingPage(),
       TabItem.information: (_) => const InformationPage(),
-      TabItem.settings: (_) => const SettingsPage(),
+      TabItem.settings: (_) => const ManualPage(),
     };
   }
 

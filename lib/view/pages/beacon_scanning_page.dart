@@ -14,9 +14,9 @@ import '../../util/constants.dart';
 List<String> helps = [
   "協力するよ！頑張って!!",
   "問題が解決しました。ありがとう！",
-  "食事中の食器の擦れあう音が苦手です。",
+  /* "食事中の食器の擦れあう音が苦手です。",
   "ささやき声が苦手です。",
-  "大きな声が苦手です。"
+  "大きな声が苦手です。"*/
 ];
 
 Color? scanningColor = Colors.indigo[100];
@@ -401,10 +401,12 @@ class _BeaconScanningPageState extends State<BeaconScanningPage>
                         title: Flexible(
                           child: Text(
                             beacon.major == 0
-                                ? '協力するよ！頑張って!!'
+                                ? beacon.minor == 0
+                                    ? '只今空いている席がございますので、案内します。'
+                                    : '協力するよ！頑張って!!'
                                 : beacon.major == 1
                                     ? helps[1]
-                                    : '${helps[beacon.major]}',
+                                    : '近くに聴覚過敏で困っている人がいます。必要に応じて、席を交代していただけますか？',
                             style: const TextStyle(
                                 fontSize: 13.0,
                                 color: Color.fromARGB(255, 21, 9, 4)),
@@ -417,11 +419,14 @@ class _BeaconScanningPageState extends State<BeaconScanningPage>
                           children: [
                             Flexible(
                               child: Text(
-                                beacon.major == 1
+                                beacon.minor == 0
+                                    ? '[スタッフ]'
+                                    : '[${beacon.minor}番]',
+                                /* beacon.major == 1
                                     ? ''
                                     : beacon.major == 0
-                                        ? '半径${beacon.accuracy}m以内にあなたを理解してくれている人がいます。'
-                                        : '半径${beacon.accuracy}m以内に聴覚過敏で苦しんでいる人がいます',
+                                        ? '近くにあなたを理解してくれている人がいます。'
+                                        : '近くに聴覚過敏で苦しんでいる人がいます',*/
                                 style: const TextStyle(
                                     fontSize: 13.0,
                                     color: Color.fromARGB(255, 21, 9, 4)),

@@ -21,7 +21,7 @@ class ManualPage extends StatefulWidget {
   State<ManualPage> createState() => _ManualPageState();
 }
 
-class _ManualPageState extends State<ManualPage> {
+class _ManualPageState extends State<ManualPage> with WidgetsBindingObserver {
   // Add from here ...
   @override
   void initState() {
@@ -54,7 +54,7 @@ class _ManualPageState extends State<ManualPage> {
         ],
       ),
       body: const WebView(
-        initialUrl: 'https://chivalrous-glory-cattle.glitch.me/',
+        initialUrl: 'https://cocomakersmap.glitch.me/1st.map.html',
       ),
     );
   }

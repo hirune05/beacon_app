@@ -52,7 +52,7 @@ class _WebPageState extends State<WebPage> {
         ],
       ),
       body: const WebView(
-        initialUrl: 'https://chivalrous-glory-cattle.glitch.me/',
+        initialUrl: 'https://cocomakersmap.glitch.me/1st.map.html',
       ),
     );
   }

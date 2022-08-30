@@ -115,8 +115,14 @@ class _BeaconBroadcastingPageState extends State<BeaconBroadcastingPage>
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.stretch,
                       children: [
-                        majorField,
-                        const SizedBox(height: 40),
+                        const SizedBox(height: 100),
+                        Text(
+                          '席を交代してくれる人を探す',
+                          style: TextStyle(fontSize: 25),
+                        ),
+                        const SizedBox(height: 50),
+                        minorField,
+                        const SizedBox(height: 120),
                         buttonBroadcast,
                         const SizedBox(height: 30),
                       ],
@@ -150,7 +156,7 @@ class _BeaconBroadcastingPageState extends State<BeaconBroadcastingPage>
   }
 
   //Major番号のTextFormField
-  Widget get majorField {
+  /*Widget get majorField {
     return Column(
       mainAxisAlignment: MainAxisAlignment.start,
       children: [
@@ -208,15 +214,49 @@ class _BeaconBroadcastingPageState extends State<BeaconBroadcastingPage>
       ],
       //7
     );
+  }*/
+
+  Widget get majorField {
+    return TextFormField(
+      style: TextStyle(
+        fontSize: 20,
+      ),
+      readOnly: broadcasting,
+      controller: majorController,
+      decoration: const InputDecoration(
+        labelText: 'ご利用の席の番号を入力して下さい',
+      ),
+      keyboardType: TextInputType.number,
+      validator: (val) {
+        if (val == null || val.isEmpty) {
+          return 'Major required';
+        }
+
+        try {
+          int major = int.parse(val);
+
+          if (major < 0 || major > 65535) {
+            return 'Major must be number between 0 and 65535';
+          }
+        } on FormatException {
+          return 'Major must be number';
+        }
+
+        return null;
+      },
+    );
   }
 
   //Minor番号のTextFormField
   Widget get minorField {
     return TextFormField(
+      style: TextStyle(
+        fontSize: 20,
+      ),
       readOnly: broadcasting,
       controller: minorController,
       decoration: const InputDecoration(
-        labelText: 'Minor',
+        labelText: 'ご利用の席の番号を入力して下さい',
       ),
       keyboardType: TextInputType.number,
       validator: (val) {
@@ -260,7 +300,7 @@ class _BeaconBroadcastingPageState extends State<BeaconBroadcastingPage>
         ),
         SizedBox(height: 20),
         Text(
-          '助けや応援を待ちましょう☺️',
+          '協力を待ちましょう☺️',
           style: TextStyle(fontSize: 17),
         ),
         /*SizedBox(
@@ -297,7 +337,7 @@ class _BeaconBroadcastingPageState extends State<BeaconBroadcastingPage>
         //発信開始
         await flutterBeacon.startBroadcast(BeaconBroadcast(
           proximityUUID: uuidController.text,
-          major: isSelectedItem + 2,
+          major: 2,
           minor: int.tryParse(minorController.text) ?? 0,
         ));
         //}
@@ -345,7 +385,7 @@ class _BeaconBroadcastingPageState extends State<BeaconBroadcastingPage>
                   ),
                 ],
               ),
-              content: Text('助けや応援を待ちましょう☺️'),
+              content: Text('席を譲っていただける人を待ちましょう☺️'),
               actions: [
                 TextButton(
                   onPressed: () => Navigator.pop(context),
@@ -357,7 +397,7 @@ class _BeaconBroadcastingPageState extends State<BeaconBroadcastingPage>
         );
       },
       child: Text(
-        '助けを求める GO→',
+        '協力を求める GO→',
         style: TextStyle(fontSize: 25),
       ),
     );

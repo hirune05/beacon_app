@@ -127,6 +127,8 @@ class _ThanksPageState extends State<ThanksPage> with WidgetsBindingObserver {
                       ),*/
                       //buttonBroadcast,
                       const SizedBox(height: 30),
+                      minorField,
+                      const SizedBox(height: 30),
                       buttonFight,
                     ],
                   ),
@@ -223,10 +225,13 @@ class _ThanksPageState extends State<ThanksPage> with WidgetsBindingObserver {
   //Minor番号のTextFormField
   Widget get minorField {
     return TextFormField(
+      style: TextStyle(
+        fontSize: 20,
+      ),
       readOnly: broadcasting,
       controller: minorController,
       decoration: const InputDecoration(
-        labelText: 'Minor',
+        labelText: 'ご利用の席の番号を入力して下さい',
       ),
       keyboardType: TextInputType.number,
       validator: (val) {
@@ -275,7 +280,7 @@ class _ThanksPageState extends State<ThanksPage> with WidgetsBindingObserver {
           await flutterBeacon.startBroadcast(BeaconBroadcast(
             proximityUUID: uuidController.text,
             major: 1,
-            minor: 0,
+            minor: int.tryParse(minorController.text) ?? 0,
           ));
         }
 
@@ -288,7 +293,7 @@ class _ThanksPageState extends State<ThanksPage> with WidgetsBindingObserver {
         }
       },
       child: Text(
-        '${broadcasting ? '閉じる' : '解決を知らせる'}',
+        '${broadcasting ? '閉じる' : 'ありがとう'}',
         style: TextStyle(fontSize: 28, color: subcolor),
       ),
     );

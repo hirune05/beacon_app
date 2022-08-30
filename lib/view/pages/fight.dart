@@ -127,6 +127,8 @@ class _FightPageState extends State<FightPage> with WidgetsBindingObserver {
                       ),*/
                       //buttonBroadcast,
                       const SizedBox(height: 30),
+                      minorField,
+                      const SizedBox(height: 30),
                       buttonFight,
                     ],
                   ),
@@ -223,10 +225,13 @@ class _FightPageState extends State<FightPage> with WidgetsBindingObserver {
   //Minor番号のTextFormField
   Widget get minorField {
     return TextFormField(
+      style: TextStyle(
+        fontSize: 20,
+      ),
       readOnly: broadcasting,
       controller: minorController,
       decoration: const InputDecoration(
-        labelText: 'Minor',
+        labelText: 'ご利用の席の番号を入力して下さい',
       ),
       keyboardType: TextInputType.number,
       validator: (val) {
@@ -271,7 +276,7 @@ class _FightPageState extends State<FightPage> with WidgetsBindingObserver {
         await flutterBeacon.startBroadcast(BeaconBroadcast(
           proximityUUID: uuidController.text,
           major: 0,
-          minor: 0,
+          minor: int.tryParse(minorController.text) ?? 0,
         ));
         //}
 
@@ -285,8 +290,8 @@ class _FightPageState extends State<FightPage> with WidgetsBindingObserver {
         }
       },
       child: Text(
-        '協力と理解を示す',
-        style: TextStyle(fontSize: 28, color: subcolor),
+        '席を交換してもいいよ',
+        style: TextStyle(fontSize: 25, color: subcolor),
       ),
     );
   }
