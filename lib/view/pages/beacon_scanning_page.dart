@@ -403,7 +403,7 @@ class _BeaconScanningPageState extends State<BeaconScanningPage>
                             beacon.major == 0
                                 ? beacon.minor == 0
                                     ? '只今空いている席がございますので、案内します。'
-                                    : '協力するよ！頑張って!!'
+                                    : '席を交換してもいいですよ。頑張って!!'
                                 : beacon.major == 1
                                     ? helps[1]
                                     : '近くに聴覚過敏で困っている人がいます。必要に応じて、席を交代していただけますか？',
